@@ -31,8 +31,12 @@ jobs:
         run: npm install
       - name: Install Hexo CLI
         run: npm install hexo-cli -g
+      - name: Debug - List files
+        run: ls -la
       - name: Build
         run: hexo clean && hexo generate
+      - name: Debug - Check generated files
+        run: ls -la public/
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:

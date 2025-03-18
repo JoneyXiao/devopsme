@@ -44,7 +44,7 @@ This resource is maintained by DevOpsMe with years of experience in the field. W
 
 If you'd like to contribute to this project or have any suggestions:
 
-1. Visit our [GitHub repository](https://github.com/username/devopsme)
+1. Visit our [GitHub repository](https://github.com/JoneyXiao/devopsme)
 2. Submit a pull request with your contributions
 3. Report issues or suggest improvements
 
