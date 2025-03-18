@@ -1,0 +1,15 @@
+.DS_Store
+.idea
+.vscode
+.env
+.env.local
+Thumbs.db
+node_modules/
+public/
+.deploy*/
+db.json
+*.log
+.deploy_git/
+.commit
+tmp/
+.cursor/
