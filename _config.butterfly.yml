@@ -18,7 +18,7 @@ code_word_wrap: true
 # formal:
 #   icon: link || the description
 social:
-  fab fa-github: https://github.com/JoneyXiao/devopsme || Github
+  fab fa-github: https://github.com/JoneyXiao || Github
   fas fa-envelope: mailto:joneyhsiao@outlook.com || Email
 
 # Website Background (設置網站背景)
@@ -106,7 +106,7 @@ footer:
   owner:
     enable: true
     since: 2025
-  # custom_text: <a href="https://github.com/JoneyXiao/devopsme">DevOps Interview Questions</a>
+  # custom_text: <a href="https://github.com/JoneyXiao">Follow me on GitHub</a>
   # copyright: true # Copyright of theme and framework
 
 # Lightbox (圖片大圖查看模式)
