@@ -32,7 +32,7 @@ jobs:
       - name: Install Hexo CLI
         run: npm install hexo-cli -g
       - name: Debug - List files
-        run: ls -la
+        run: ls -la && cat _config.butterfly.yml _config.yml
       - name: Build
         run: hexo clean && hexo generate
       - name: Debug - Check generated files
