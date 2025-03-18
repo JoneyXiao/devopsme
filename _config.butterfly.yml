@@ -21,19 +21,56 @@ social:
   fab fa-github: https://github.com/JoneyXiao || Github
   fas fa-envelope: mailto:joneyhsiao@outlook.com || Email
 
-# Card Author (卡片作者)
-card_author:
-  enable: true
-  description: DevOps Interview Questions
-  button:
-    enable: true
-    icon: fab fa-github
-    text: Follow Me
-    link: https://github.com/JoneyXiao
-
 # Website Background (設置網站背景)
 # can set it to color or image (可設置圖片 或者 顔色)
 background: "linear-gradient(to right, #2c3e50, #4ca1af)"
+
+# Aside Settings (側邊欄設置)
+aside:
+  enable: true
+  hide: false
+  button: true
+  mobile: true
+  position: right
+  display:
+    archive: true
+    tag: true
+    category: true
+  card_author:
+    enable: true
+    description: DevOps Interview Questions
+    button:
+      enable: true
+      icon: fab fa-github
+      text: Follow Me
+      link: https://github.com/JoneyXiao
+  card_announcement:
+    enable: true
+    content: This is a comprehensive collection of DevOps interview questions and answers. Feel free to contribute!
+  card_recent_post:
+    enable: true
+    limit: 5
+    sort: date
+  card_categories:
+    enable: true
+    limit: 8
+    expand: none
+  card_tags:
+    enable: true
+    limit: 40
+    color: false
+    orderby: random
+  card_archives:
+    enable: true
+    type: monthly
+    format: MMMM YYYY
+    order: -1
+    limit: 8
+  card_webinfo:
+    enable: true
+    post_count: true
+    last_push_date: true
+    sort_order:
 
 # Main theme color (主題顏色)
 theme_color:
