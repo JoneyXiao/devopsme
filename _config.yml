@@ -127,5 +127,5 @@ symbols_count_time:
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://github.com/YOUR_GITHUB_USERNAME/devopsme.git
+  repo: https://github.com/JoneyXiao/devopsme.git
   branch: gh-pages
