@@ -20,19 +20,19 @@ jobs:
           # Examples: 20, 18.19, >=16.20.2, lts/Iron, lts/Hydrogen, *, latest, current, node
           # Ref: https://github.com/actions/setup-node#supported-version-syntax
           node-version: "20"
-      - name: Cache NPM dependencies
-        uses: actions/cache@v4
-        with:
-          path: node_modules
-          key: ${{ runner.OS }}-npm-cache
-          restore-keys: |
-            ${{ runner.OS }}-npm-cache
+      # - name: Cache NPM dependencies
+      #   uses: actions/cache@v4
+      #   with:
+      #     path: node_modules
+      #     key: ${{ runner.OS }}-npm-cache
+      #     restore-keys: |
+      #       ${{ runner.OS }}-npm-cache
       - name: Install Dependencies
         run: npm install
       - name: Install Hexo CLI
         run: npm install hexo-cli -g
       - name: Debug - List files
-        run: ls -la && cat _config.butterfly.yml _config.yml && grep -Ir "xxxxxx" ./
+        run: ls -la
       - name: Build
         run: hexo clean && hexo generate
       - name: Debug - Check generated files
