@@ -27,6 +27,8 @@ jobs:
       #     key: ${{ runner.OS }}-npm-cache
       #     restore-keys: |
       #       ${{ runner.OS }}-npm-cache
+      - name: debug
+        run: ls -la
       - name: Install Dependencies
         run: npm install
       - name: Install Hexo CLI
