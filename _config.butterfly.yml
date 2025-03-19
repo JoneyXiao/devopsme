@@ -23,7 +23,7 @@ social:
 
 # Website Background (設置網站背景)
 # can set it to color or image (可設置圖片 或者 顔色)
-background: "linear-gradient(to right, #2c3e50, #4ca1af)"
+background: "linear-gradient(to right, rgb(134, 239, 172), rgb(59, 130, 246), rgb(147, 51, 234))"
 
 # Aside Settings (側邊欄設置)
 aside:
