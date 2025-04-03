@@ -16,15 +16,18 @@ This repository contains a Hexo-based website dedicated to DevOps interview prep
 
 ## Website
 
-Visit the website at: https://YOUR_GITHUB_USERNAME.github.io/devopsme
+Visit the website at: https://joneyxiao.github.io/devopsme
 
 ## Features
 
 - Clean, responsive design using the Butterfly theme
 - Categorized questions and answers
+- Full-screen responsive background image on the homepage
+- Custom DevOps-themed logo and favicon
 - Search functionality
 - Mobile-friendly interface
 - Syntax highlighting for code snippets
+- Social links and GitHub integration
 
 ## Development
 
@@ -32,12 +35,13 @@ Visit the website at: https://YOUR_GITHUB_USERNAME.github.io/devopsme
 
 - Node.js (v14+)
 - npm or yarn
+- Git
 
 ### Setup
 
 1. Clone the repository
 ```bash
-git clone https://github.com/YOUR_GITHUB_USERNAME/devopsme.git
+git clone https://github.com/JoneyXiao/devopsme.git
 cd devopsme
 ```
 
@@ -63,6 +67,28 @@ hexo new post "category/your-question-title"
 
 Then edit the file created in `source/_posts/category/your-question-title.md`.
 
+Use the following format for your post:
+
+```markdown
+---
+title: Your Question Title
+date: YYYY-MM-DD HH:MM:SS
+categories:
+  - category-name
+tags:
+  - tag1
+  - tag2
+---
+
+## Question
+
+What is your question?
+
+## Answer
+
+Your comprehensive answer goes here.
+```
+
 ### Building the site
 
 ```bash
@@ -71,9 +97,30 @@ hexo clean && hexo generate
 
 The generated site will be in the `public` directory.
 
+## Customization
+
+### Theme Configuration
+
+This site uses the Butterfly theme. The main configuration file is `_config.butterfly.yml`.
+
+Key customizations include:
+- Custom DevOps SVG logo and favicon
+- Full-screen gradient background
+- Customized sidebar with author card, recent posts, categories, and tags
+- Syntax highlighting with the "mac" theme
+
+### Custom CSS
+
+Custom CSS is located in `source/css/custom.css`. This includes:
+- Custom color variables
+- Card styling
+- Post title styling
+- Homepage layout enhancements
+- Responsive design adjustments
+
 ## Deployment
 
-The site is automatically deployed to GitHub Pages using GitHub Actions when changes are pushed to the main branch.
+The site is automatically deployed to GitHub Pages using GitHub Actions when changes are pushed to the main branch. The workflow configuration is in `.github/workflows/pages.yml`.
 
 ## Contributing
 
@@ -85,6 +132,22 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 4. Push to the branch (`git push origin feature/amazing-question`)
 5. Open a Pull Request
 
+### Content Guidelines
+
+When contributing new questions and answers:
+- Focus on practical, interview-relevant content
+- Include real-world examples where possible
+- For code examples, use proper syntax highlighting
+- Keep explanations clear and concise
+- Categorize questions appropriately
+- Add relevant tags to make questions discoverable
+
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgements
+
+- [Hexo](https://hexo.io/) for the static site generator
+- [Butterfly Theme](https://github.com/jerryc127/hexo-theme-butterfly) for the beautiful theme
+- Contributors who have added questions and answers
