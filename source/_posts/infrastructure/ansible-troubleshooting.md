@@ -1,6 +1,6 @@
 ---
 title: Ansible Troubleshooting and Best Practices Interview Questions
-date: 2023-07-10 15:30:00
+date: 2025-04-03 15:30:00
 categories:
   - infrastructure
 tags:
@@ -186,7 +186,22 @@ Several approaches for managing secrets in Ansible:
            3130
      ```
 
-2. **HashiCorp Vault integration**:
+2. **Using no_log for sensitive tasks**:
+   - To prevent sensitive data from being displayed in logs:
+     ```yaml
+     - name: Create a user with a password
+       user:
+         name: secure_user
+         password: "{{ user_password }}"
+       no_log: true
+     ```
+   - Important limitations:
+     - Does not prevent data from being shown when debugging Ansible itself via `ANSIBLE_DEBUG`
+     - Does not mask data in the `register` output if you display it later
+     - Will mask the entire task output, not just the sensitive parts
+   - Best practice is to combine `no_log` with Ansible Vault for sensitive variables
+
+3. **HashiCorp Vault integration**:
    - Use `community.hashi_vault` collection
    - Example:
      ```yaml
@@ -194,26 +209,33 @@ Several approaches for managing secrets in Ansible:
        community.hashi_vault.vault_kv2_get:
          path: 'secret/data/my-app'
        register: vault_secrets
+       no_log: true
      
      - name: Use secret
        debug:
-         msg: "DB password is {{ vault_secrets.data.data.db_password }}"
+         msg: "Connection successful"
+       when: vault_secrets.data.data.db_password is defined
      ```
 
-3. **External secret management**:
+4. **External secret management**:
    - Pull secrets from systems like AWS Secrets Manager
    - Use custom lookup plugins
    
-4. **Environment variables**:
+5. **Environment variables**:
    - Pass sensitive data as environment variables
    - Use `lookup('env', 'SECRET_VAR')` to access them
+   - Ensure environment variables are set securely
 
-5. **Best practices**:
+6. **Best practices**:
    - Never commit unencrypted secrets
    - Rotate vault passwords regularly
    - Use different vault passwords for different environments
    - Consider using vault_id labels for different security contexts
    - Limit access to vault passwords based on roles
+   - Always use `no_log: true` for tasks involving passwords, tokens, or other sensitive data
+   - Be careful with `debug` module when troubleshooting security-related tasks
+   - Set secure permissions on files containing secrets
+   - Consider using `--diff` mode carefully as it can expose secrets in changes
 
 ## Question 5: How would you implement Continuous Deployment using Ansible?
 

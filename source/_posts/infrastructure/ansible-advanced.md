@@ -1,6 +1,6 @@
 ---
 title: Advanced Ansible Interview Questions
-date: 2023-07-10 15:00:00
+date: 2025-04-03 15:00:00
 categories:
   - infrastructure
 tags:
@@ -188,3 +188,96 @@ Collections are important because they allow:
 - Users to install only the collections they need
 - Organizations to create custom, reusable content
 - Better separation between community content and Ansible core
+
+## Question 6: What are Ansible Tags and how can they improve playbook execution?
+
+**Answer:**
+Ansible Tags are a way to categorize tasks in playbooks, allowing you to run or skip specific parts of playbooks. Tags provide granular control over which tasks are executed without modifying the playbook structure.
+
+Key aspects of Ansible Tags:
+
+1. **Assigning Tags**:
+   ```yaml
+   tasks:
+     - name: Install Apache
+       yum:
+         name: httpd
+         state: present
+       tags:
+         - packages
+         - webserver
+         
+     - name: Configure Apache
+       template:
+         src: httpd.conf.j2
+         dest: /etc/httpd/conf/httpd.conf
+       tags:
+         - configuration
+         - webserver
+   ```
+
+2. **Multiple Tag Types**:
+   - **Standard tags**: Regular named tags you create
+   - **Special tags**: Built-in tags like `always`, `never`, and `tagged`
+   - **Tag inheritance**: Tags applied to includes, roles, or blocks are applied to all tasks within them
+
+3. **Running Tasks by Tags**:
+   ```bash
+   # Only run tasks with specified tags
+   ansible-playbook playbook.yml --tags "configuration,packages"
+   
+   # Skip tasks with specified tags
+   ansible-playbook playbook.yml --skip-tags "notification"
+   
+   # List all tags in a playbook
+   ansible-playbook playbook.yml --list-tags
+   ```
+
+4. **Special Tags**:
+   - `always`: Tasks with this tag will always run, regardless of which tags are specified
+   - `never`: Tasks with this tag will never run unless the tag is specifically requested
+   
+   ```yaml
+   - name: Always run this task
+     debug:
+       msg: "This task always runs"
+     tags:
+       - always
+       
+   - name: Only run when explicitly called
+     debug:
+       msg: "This only runs when the 'rare' tag is specified"
+     tags:
+       - never
+       - rare
+   ```
+
+5. **Tag Inheritance**:
+   ```yaml
+   - name: Web server configuration
+     hosts: webservers
+     tags:
+       - webserver
+     tasks:
+       - name: Install packages  # Inherits 'webserver' tag
+         yum:
+           name: httpd
+           state: present
+   ```
+
+6. **Best Practices**:
+   - Use consistent, meaningful tag names
+   - Apply tags strategically, avoiding over-tagging
+   - Use tags to organize tasks by:
+     - Function (database, webserver, security)
+     - Stage (preparation, installation, configuration)
+     - Complexity or risk level (simple, complex, critical)
+   - Document used tags for team members
+   - Consider tag organization in large projects
+
+Tags are most useful for:
+- Running specific sections of long playbooks during development
+- Targeting only certain aspects of configuration for updates
+- Running specific maintenance tasks
+- Implementing phased deployments
+- Troubleshooting specific components
