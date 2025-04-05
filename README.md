@@ -48,6 +48,7 @@ cd devopsme
 2. Install dependencies
 ```bash
 npm install
+npm install hexo-ci -g
 ```
 
 3. Run the development server
