@@ -23,15 +23,14 @@ When answering Terraform interview questions, follow these guidelines to create 
 7. **Mention best practices**: Include industry best practices when relevant.
 8. **Be honest about limitations**: Acknowledge limitations or trade-offs where appropriate.
 
-## Question
 
-What is Terraform and what problem does it solve?
+## What is Terraform and what problem does it solve?
 
-## Tips for answering
+### Tips for answering
 
 Focus on defining Terraform concisely, then outline its key benefits using a problem-solution approach. Mention both technical advantages and organizational benefits. Demonstrate your understanding of infrastructure challenges that existed before IaC.
 
-## Answer
+### Answer
 
 Terraform is an open-source infrastructure as code tool that enables you to safely and predictably create, change, and improve infrastructure. It solves several key problems:
 
@@ -43,15 +42,14 @@ Terraform is an open-source infrastructure as code tool that enables you to safe
 
 By defining infrastructure as code, Terraform makes deployments more reliable, traceable, and repeatable.
 
-## Question
 
-What is the Terraform workflow?
+## What is the Terraform workflow?
 
-## Tips for answering
+### Tips for answering
 
 Structure your answer around the core Terraform commands in their logical order. Use brief explanations for each step and highlight how they connect. Mention how this workflow supports infrastructure lifecycle management.
 
-## Answer
+### Answer
 
 The core Terraform workflow follows a write-plan-apply pattern:
 
@@ -74,15 +72,14 @@ This workflow is supplemented by:
 
 This cycle enables predictable infrastructure changes with clear visibility into what will happen before changes are applied.
 
-## Question
 
-What is Terraform state and why is it important?
+## What is Terraform state and why is it important?
 
-## Tips for answering
+### Tips for answering
 
 Begin with a clear definition of state, then explain its importance through specific functions it serves. Use real-world examples to illustrate what would happen without state management. Address both technical and operational aspects.
 
-## Answer
+### Answer
 
 Terraform state is a JSON mapping that connects your configuration to real-world infrastructure resources. It's crucial for several reasons:
 
@@ -98,15 +95,13 @@ Without state, Terraform couldn't determine which resources already exist, causi
 
 Best practice is storing state remotely (S3, Azure Blob, HCP Terraform) with proper access controls and versioning enabled.
 
-## Question
+## How does Terraform handle dependencies between resources?
 
-How does Terraform handle dependencies between resources?
-
-## Tips for answering
+### Tips for answering
 
 Start with the different ways Terraform manages dependencies, then provide specific examples. Show both basic and advanced understanding by mentioning the resource graph. Include a practical example with code if possible.
 
-## Answer
+### Answer
 
 Terraform manages resource dependencies through:
 
@@ -132,15 +127,13 @@ Terraform manages resource dependencies through:
 
 This dependency system ensures resources are created, modified, and destroyed in the correct order, preventing errors like referencing resources that don't exist yet.
 
-## Question
+## What is a Terraform module and why would you use one?
 
-What is a Terraform module and why would you use one?
-
-## Tips for answering
+### Tips for answering
 
 Define modules clearly and focus on their practical benefits. Use an example of how a module might be structured and called. Emphasize both technical advantages and organizational benefits of modular infrastructure.
 
-## Answer
+### Answer
 
 A Terraform module is a self-contained package of Terraform configurations that are managed as a group. Essentially, it's a reusable infrastructure component.
 
@@ -168,15 +161,13 @@ module "vpc" {
 
 Modules shine when you need to enforce standards, share infrastructure patterns across teams, or isolate complex components for easier management.
 
-## Question
+## How does Terraform handle secrets and sensitive data?
 
-How does Terraform handle secrets and sensitive data?
-
-## Tips for answering
+### Tips for answering
 
 Focus on both the technical mechanisms and best practices. Organize your answer from basic to advanced approaches. Include code examples where relevant and emphasize security considerations.
 
-## Answer
+### Answer
 
 Terraform provides multiple layers for handling sensitive data:
 
@@ -219,15 +210,13 @@ Best practices:
 
 The most secure approach combines several of these techniques based on your security requirements.
 
-## Question
+## What is the difference between Terraform and other IaC tools like Ansible, CloudFormation, or Pulumi?
 
-What is the difference between Terraform and other IaC tools like Ansible, CloudFormation, or Pulumi?
-
-## Tips for answering
+### Tips for answering
 
 Structure your answer as clear comparisons focusing on key strengths and differences. Use categories (like "state management" or "language") to make comparisons consistent. Remain objective rather than simply favoring Terraform.
 
-## Answer
+### Answer
 
 Terraform differs from other IaC tools in several distinct ways:
 
@@ -251,15 +240,13 @@ Terraform differs from other IaC tools in several distinct ways:
 
 Each tool has its place depending on your requirements, team skills, and existing ecosystem integration needs.
 
-## Question
+## What are the key components of a Terraform configuration?
 
-What are the key components of a Terraform configuration?
-
-## Tips for answering
+### Tips for answering
 
 Organize your answer by listing the main components and explaining each with a brief example. Focus on showing both breadth of knowledge and understanding of how components work together.
 
-## Answer
+### Answer
 
 A Terraform configuration consists of these core components:
 
@@ -329,15 +316,13 @@ A Terraform configuration consists of these core components:
 
 These components work together to define, parameterize, and organize your infrastructure definitions.
 
-## Question
+## What are Terraform workspaces and when would you use them?
 
-What are Terraform workspaces and when would you use them?
-
-## Tips for answering
+### Tips for answering
 
 Begin with a clear definition of workspaces, explain how they work technically, then discuss appropriate use cases. Include command examples and mention both advantages and limitations.
 
-## Answer
+### Answer
 
 Terraform workspaces are isolated instances of state within a single configuration directory that allow you to maintain multiple environments using the same Terraform code.
 
@@ -370,4 +355,4 @@ Limitations:
 - Doesn't handle significant configuration differences between environments
 - Can become difficult to manage with complex deployments
 
-For complex multi-environment setups, consider separate configuration directories with a DRY approach using modules instead of workspaces. 
+For complex multi-environment setups, consider separate configuration directories with a DRY approach using modules instead of workspaces.
