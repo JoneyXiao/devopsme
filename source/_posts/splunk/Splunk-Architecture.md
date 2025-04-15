@@ -26,7 +26,7 @@ tags:
 
 ## Indexing
 
-- writes the data to indices on disk in the form of flat files stored in buckets which are just directories on the filesystem
+- Writes the data to indexes on disk in the form of flat files stored in buckets which are just directories on the filesystem
 - Data divided into events. Writes the data to the disk in "buckets"
 
 ## Search
@@ -131,7 +131,7 @@ Direct data ingestion, such as TCP or syslog, is not allowed. However, you can s
 
 ## Index
 
-- Index is a repository for splunk data, when splunk processes raw incoming data, it adds that data to indices, indicies map to places on the disk which calls buckets. Splunk has several built-in indices, the `$SPLUNK_HOME/var/lib/splunk/defaultdb` is called main index, `_internal` index stores internal logs, we can create additional indices as needed.
+- Index is a repository for splunk data, when splunk processes raw incoming data, it adds that data to indexes, indexes map to places on the disk which calls buckets. Splunk has several built-in indexes, the `$SPLUNK_HOME/var/lib/splunk/defaultdb` is called main index, `_internal` index stores internal logs, we can create additional indexes as needed.
 
 - Splunk transforms incoming data into events, and stores it in indexes.
 
@@ -175,3 +175,87 @@ As the data volume of a deployment increases, the demand for storage often excee
 - SmartStore allows you to use remote object stores like AWS S3, Azure Blob Storage, GCP Cloud Storage, etc
 - Most data resides on remote storage while the indexer maintains a local cache(hot buckets)
 
+# Splunk Enterprise Licensing
+
+Two types of enterprise Licensing `Volume-based` and `Infrastructure`.
+
+## Volume-based
+- Based on your data indexed per day, not data stored
+- Daily indexing volume is measured from midnight to midnight by the clock on the license manager
+
+> Other things that do not count against your license
+> - Splunk internal log data
+> - Duplicate data
+> - Metadata
+> 
+> License manager can be your search head, or a separate license server.
+> 
+> Licenses volume of 100GB per day or higher, if you exceed your licensed daily volume on any one calendar day, you get a warning, but search is not disabled 
+> 
+> Licenses volume of less than 100GB per day, if you generate 45 license warnings in a 60 day period, you are in violation, and that license stack will not be searchable. You need to contact Splunk to reset that license.
+> 
+> [What happens during a license violation?](https://docs.splunk.com/Documentation/Splunk/9.4.1/Admin/Aboutlicenseviolations#What_happens_during_a_license_violation.3F)
+
+## Infrastructure
+- Based on virtual CPUs(vCPU)
+    - Physical or logical core, virtual core, etc
+    - Splunk uses the CPUs reported by the OS
+- All search heads and indexers count towards vCPU capacity
+
+## Which components need a license?
+
+In a distributed environment, most Splunk Enterprise instances need access to an enterprise license (anything that indexes data). The exception is heavy forwarders, which only need a forwarder license, unless they are also indexing data, in which case they need enterprise licenses.
+
+The ideal way is to set up a license master and have all of the Splunk instances in your environment talk to the master to get their licenses.
+
+A collection of licenses whose individual licensing volume amounts aggregate to serve as a single unified amount of indexing volume is called a stack.
+
+## [License pooling](https://docs.splunk.com/Documentation/Splunk/9.4.1/Admin/Createalicensepool)
+
+![Splunk License Pooling](license-pooling.png)
+
+[LICENSE GROUPS](https://docs.splunk.com/Documentation/Splunk/9.4.1/Admin/Groups,stacks,pools,andotherterminology) are sets of license stacks. A stack can only be a member of one group, and only one group can be “active” at any given time. The license groups are:
+- Enterprise/Sales Trial Group: Allows stacking of purchased enterprise licenses
+- Enterprise Trial Group: Default group. Cannot stack licenses
+- Free Group: No stacking
+- Forwarders Group: No stacking
+
+LICENSE POOLS
+
+- License pools are created from license stacks
+- Pools are sized for specific purposes
+- Managed by the license manager
+- Indexers and other Splunk Enterprise components are assigned to a pool
+- Splunk recommends not assigning forwarders to a license pool, since they have unique license types
+
+# Configuration Files
+
+- Everything Splunk does is governed by configuration files
+- Configuration files are stored in `/etc`, and they have the `.conf` extension
+- Configuration files are layered
+    - You can have `.conf` files that have the same name in different directories
+    - Splunk determines which one to use based on the current app
+    - Use `btool` to determine which `.conf` file is being used
+- The `/etc/<app>/default` directory contains preconfigured versions of `.conf` files
+- The `/etc/<app>/local` directory is where custom configurations are stored
+
+Configuration File Structure:
+
+```conf
+# text file
+[Stanza]
+Attribute = Value
+
+[Stanza]
+Attribute = Value
+```
+
+# Splunk Apps and Add-ons
+
+Apps extend Splunk’s functionality, they enhance the user experience with built in dashboards, reports, alerts, saved searches, data models, conf files, etc. An app is a collection of Splunk configuration files, views, knowledge objects, and sometimes add-ons.
+
+Add-ons primarily support apps, they enrich the incoming data with tags, data models, datasets, etc. An add-on is a subset of an app and specifies data collection, but doesn't usually have visualizations because they are part of the larger app.
+
+- Apps and add-ons can be created by individuals, third party companies, Splunk, or vendors.
+- Apps and add-ons that are built by Splunk carry the ”Splunk Built” logo
+- Apps and add-ons that are certified by Splunk carry the “Splunk Certified” logo
