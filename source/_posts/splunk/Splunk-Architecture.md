@@ -212,7 +212,7 @@ A collection of licenses whose individual licensing volume amounts aggregate to 
 
 ## [License pooling](https://docs.splunk.com/Documentation/Splunk/9.4.1/Admin/Createalicensepool)
 
-![Splunk License Pooling](license-pooling.png)
+![Splunk License Terms](license-terms.png)
 
 [LICENSE GROUPS](https://docs.splunk.com/Documentation/Splunk/9.4.1/Admin/Groups,stacks,pools,andotherterminology) are sets of license stacks. A stack can only be a member of one group, and only one group can be “active” at any given time. The license groups are:
 - Enterprise/Sales Trial Group: Allows stacking of purchased enterprise licenses
