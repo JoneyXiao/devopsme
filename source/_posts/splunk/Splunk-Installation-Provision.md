@@ -1,3 +1,14 @@
+---
+title: Splunk Installation & Provision
+date: 2025-04-17 17:17:00
+categories:
+  - splunk
+tags:
+  - splunk
+  - splunk-installation
+  - splunk-provision
+---
+
 # [Start Using Splunk](https://www.splunk.com/en_us/download.html)
 
 > Please sign up a new splunk account if you don't have yet.
