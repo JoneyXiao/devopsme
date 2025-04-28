@@ -1,3 +1,15 @@
+---
+title: Splunk Inputs
+date: 2025-04-20 17:17:00
+categories:
+  - splunk
+tags:
+  - splunk
+  - splunk-inputs
+  - splunk-data-pipeline
+  - splunk-forwarder
+---
+
 # The Splunk Data Pipeline
 
 ![The Splunk Data Pipeline](splunk-data-pipeline.png)
