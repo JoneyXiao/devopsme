@@ -70,11 +70,11 @@ Create an LDAP Strategy: Settings -> Access Controls -> Authentication Method ->
 
 ## Splunk Installation Directory Structure
 
-![Splunk Installation Directory Structure](Splunk-Installation-Directory-Structure.png)
+![Splunk Installation Directory Structure](splunk-installation-directory-structure.png)
 
 `$SPLUNK_HOME/etc/system/local` is where the main configuration files exist. Each splunk app has a set of configuration files with same file names.
 
-![Splunk Installation Directory etc](Splunk-Installation-Directory-etc.png)
+![Splunk Installation Directory etc](splunk-installation-directory-etc.png)
 
 ## Configuration file structure
 
