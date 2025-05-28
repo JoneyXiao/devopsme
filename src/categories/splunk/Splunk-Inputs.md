@@ -12,7 +12,7 @@ tags:
 
 # The Splunk Data Pipeline
 
-![The Splunk Data Pipeline](splunk-data-pipeline.png)
+![The Splunk Data Pipeline](./Splunk-Inputs/splunk-data-pipeline.png)
 
 ## Input
 In the input segment, Splunk software consumes data. It acquires the raw data stream from its source, breaks it into 64K blocks, and annotates each block with some metadata keys. The keys apply to the entire input source overall. They include the host, source, and source type of the data. The keys can also include values that are used internally, such as the character encoding of the data stream, and values that control later processing of the data, such as the index into which the events should be stored.

@@ -11,7 +11,7 @@ tags:
 
 # [Splunk Data Pipeline](https://docs.splunk.com/Documentation/Splunk/latest/Deploy/Datapipeline)
 
-![Splunk Data Pipeline](data-pipeline.png)
+![Splunk Data Pipeline](./Splunk-Architecture/data-pipeline.png)
 
 ## Input
 
@@ -58,7 +58,7 @@ In a small deployment of Splunk, the search head and indexer can be the same com
 
 #### [S1/S11 Architecture](https://docs.splunk.com/Documentation/SVA/current/Architectures/S1)(small deployment)
 
-![Splunk S1/S11 Architecture](s1.png)
+![Splunk S1/S11 Architecture](./Splunk-Architecture/s1.png)
 
 - Search Head and Indexer are the same Splunk component
 - Daily data ingest up to 500GB
@@ -73,7 +73,7 @@ s1(single server deployment) with three tiers:
 
 #### [C1/C11 Architecture](https://docs.splunk.com/Documentation/SVA/current/Architectures/C1C11)(Distributed Clustered Deployment - Single Site)
 
-![Splunk C1/C11 Architecture](c1.png)
+![Splunk C1/C11 Architecture](./Splunk-Architecture/c1.png)
 
 - decouple the search head and indexer
 - One or more stand-alone(not clustered) search heads
@@ -91,7 +91,7 @@ The distributed clustered architecture environment for a single site.
 
 #### [C3/C13 Architecture](https://docs.splunk.com/Documentation/SVA/current/Architectures/C3C13)(Distributed Clustered Deployment with search head clustering - Single-Site)
 
-![Splunk C3/C13 Architecture](c3.png)
+![Splunk C3/C13 Architecture](./Splunk-Architecture/c3.png)
 
 It's the same basic architecture as C1/C11, but with the addition of search head clustering.
 
@@ -103,7 +103,7 @@ More Splunk Validated Architectures can be found [here](https://docs.splunk.com/
 
 ## [Splunk Cloud Platform](https://docs.splunk.com/Documentation/SVA/current/Architectures/SCPExperience)
 
-![Splunk Cloud Platform with Victoria Experience](victoria-arch.png)
+![Splunk Cloud Platform with Victoria Experience](./Splunk-Architecture/victoria-arch.png)
 
 Splunk Cloud Platform is a cloud-based service where Splunk manages the infrastructure, providing most of the benefits of a Splunk Enterprise deployment, with a few key differences(collection tier).
 
@@ -212,7 +212,7 @@ A collection of licenses whose individual licensing volume amounts aggregate to 
 
 ## [License pooling](https://docs.splunk.com/Documentation/Splunk/9.4.1/Admin/Createalicensepool)
 
-![Splunk License Terms](license-terms.png)
+![Splunk License Terms](./Splunk-Architecture/license-terms.png)
 
 [LICENSE GROUPS](https://docs.splunk.com/Documentation/Splunk/9.4.1/Admin/Groups,stacks,pools,andotherterminology) are sets of license stacks. A stack can only be a member of one group, and only one group can be “active” at any given time. The license groups are:
 - Enterprise/Sales Trial Group: Allows stacking of purchased enterprise licenses

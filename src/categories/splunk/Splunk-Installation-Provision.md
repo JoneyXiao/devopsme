@@ -51,7 +51,7 @@ tags:
 9. Go to the Splunk home directory `cd /opt/splunk/bin`
 10. Start Splunk for the first time `sudo ./splunk start --accept-license`, `--accept-license` is used to accept the license agreement
 11. Create a username and password as prompted
-12. Wait for the web server to be online, get the IP address of this machine, and visit your Splunk search head web interface at https://<ip-address>:8000
+12. Wait for the web server to be online, get the IP address of this machine, and visit your Splunk search head web interface at "https://\<ip-address\>:8000"
 
 [Relevant Splunk Doc](https://docs.splunk.com/Documentation/Splunk/9.2.1/Installation/InstallonLinux)
 

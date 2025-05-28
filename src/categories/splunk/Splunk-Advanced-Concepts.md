@@ -70,11 +70,11 @@ Create an LDAP Strategy: Settings -> Access Controls -> Authentication Method ->
 
 ## Splunk Installation Directory Structure
 
-![Splunk Installation Directory Structure](splunk-installation-directory-structure.png)
+![Splunk Installation Directory Structure](./Splunk-Advanced-Concepts/splunk-installation-directory-structure.png)
 
 `$SPLUNK_HOME/etc/system/local` is where the main configuration files exist. Each splunk app has a set of configuration files with same file names.
 
-![Splunk Installation Directory etc](splunk-installation-directory-etc.png)
+![Splunk Installation Directory etc](./Splunk-Advanced-Concepts/splunk-installation-directory-etc.png)
 
 ## Configuration file structure
 
@@ -144,7 +144,7 @@ Allow you to assign names to specific field and value combinations.
 
 Example: you might have a server named *east-uk-server-1433-mail1.east.uk.local*, you know that this server is the mail server for the eastern UK region and it resides in building 1433. But Splunk and other users do not know that. So create a tag! Now users can search with this server is type `tag=Mail-East-UK`.
 
-![Splunk Tags](splunk-tags.png)
+![Splunk Tags](./Splunk-Advanced-Concepts/splunk-tags.png)
 
 ## Event Types
 
@@ -156,7 +156,7 @@ Suppose you have a search that your organization runs frequently, perhaps even w
 
 Lookup tables add custom fields to events from external sources, like *csv* files.
 
-![Splunk Lookups](splunk-lookups.png)
+![Splunk Lookups](./Splunk-Advanced-Concepts/splunk-lookups.png)
 
 Go to *Settings -> Lookups -> Lookup table files -> Add new*
 

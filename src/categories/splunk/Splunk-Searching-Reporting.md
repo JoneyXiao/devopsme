@@ -45,7 +45,7 @@ It's the primary way users interact with data in Splunk.
 
 A Splunk search is all about reducing complexity in unstructured or semi structured data so that it provides value to data analysts and users. A basic search pipeline looks like this:
 
-![A Basic Search Pipeline View](basic-search-pipeline-view.png)
+![A Basic Search Pipeline View](./Splunk-Searching-Reporting/basic-search-pipeline-view.png)
 
 Step 1: We input a big glob of events. This data can come from forwarders, network inputs, scripted inputs, uploads, anywhere. Then we perform broad searches on it so that we filter out some of the data that we don’t want.
 
@@ -55,7 +55,7 @@ In step 3, we have the data we want in the format we want, and now we have to de
 
 And in between each step is the Unix pipe `|`.
 
-![A Basic Search Pipeline](basic-search-pipeline.png)
+![A Basic Search Pipeline](./Splunk-Searching-Reporting/basic-search-pipeline.png)
 
 The pipe opeators tell Splunk to take the output of the previous commands, do something with it, then output it to the next step.
 

@@ -29,7 +29,7 @@ Why Visualize Data?
 
 ## Dimensions
 
-![Dimensions](dimensions.png)
+![Dimensions](./Splunk-Visualizing/dimensions.png)
 
 A dimension is something we want to measure by. Think of a dimension as one side of a cube - that's why we call cubes “three dimensions”
 
