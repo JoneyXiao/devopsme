@@ -1,31 +1,27 @@
 {
-  "name": "hexo-site",
-  "version": "0.0.0",
-  "private": true,
+  "name": "devopsme",
+  "description": "A comprehensive collection of DevOps interview questions and answers to help you prepare for technical interviews",
+  "version": "0.0.1",
+  "license": "MIT",
+  "type": "module",
   "scripts": {
-    "build": "hexo generate",
-    "clean": "hexo clean",
-    "deploy": "hexo deploy",
-    "server": "hexo server"
+    "docs:build": "vuepress-vite build src",
+    "docs:clean-dev": "vuepress-vite dev src --clean-cache",
+    "docs:dev": "vuepress-vite dev src",
+    "docs:update-package": "pnpm dlx vp-update"
   },
-  "hexo": {
-    "version": "7.3.0"
+  "devDependencies": {
+    "@vuepress/bundler-vite": "2.0.0-rc.23",
+    "@vuepress/plugin-docsearch": "2.0.0-rc.106",
+    "sass-embedded": "^1.88.0",
+    "vue": "^3.5.13",
+    "vuepress": "2.0.0-rc.23",
+    "vuepress-theme-hope": "2.0.0-rc.88"
   },
-  "dependencies": {
-    "hexo": "^7.3.0",
-    "hexo-deployer-git": "^4.0.0",
-    "hexo-generator-archive": "^2.0.0",
-    "hexo-generator-category": "^2.0.0",
-    "hexo-generator-index": "^4.0.0",
-    "hexo-generator-searchdb": "^1.4.1",
-    "hexo-generator-tag": "^2.0.0",
-    "hexo-renderer-ejs": "^2.0.0",
-    "hexo-renderer-marked": "^7.0.0",
-    "hexo-renderer-stylus": "^3.0.1",
-    "hexo-server": "^3.0.0",
-    "hexo-symbols-count-time": "^0.7.1",
-    "hexo-theme-butterfly": "^5.3.5",
-    "hexo-theme-landscape": "^1.0.0",
-    "hexo-theme-next": "^8.22.0"
-  }
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  },
+  "packageManager": "pnpm@10.11.0+sha512.6540583f41cc5f628eb3d9773ecee802f4f9ef9923cc45b69890fb47991d4b092964694ec3a4f738a420c918a333062c8b925d312f42e4f0c263eb603551f977"
 }
