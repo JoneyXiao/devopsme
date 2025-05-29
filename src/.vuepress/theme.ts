@@ -131,9 +131,9 @@ export default hopeTheme({
       prefix: "fa6-solid:",
     },
     docsearch: {
-      appId: "6748260267292929",
-      apiKey: "1234567890",
-      indexName: "devopsme",
+      appId: "I6UU4MLX8C",
+      apiKey: "9a32a68064d80bbeaff24a00dfeb1e89",
+      indexName: "joneyxiaoio",
     },
 
     // install @vuepress/plugin-pwa and uncomment these if you want a PWA
