@@ -322,11 +322,11 @@ footer: Theme by <a href="https://theme-hope.vuejs.press/" target="_blank">VuePr
 
 # About DevOps Interview Questions
 
-## Purpose
+## <img src="/assets/icon/purpose.svg" width="30" height="30" style="vertical-align: middle;"> Purpose
 
 This website aims to provide a comprehensive collection of DevOps interview questions and answers to help professionals prepare for technical interviews. Whether you're just starting your DevOps journey or looking to advance your career, these curated questions will help you strengthen your knowledge and confidence.
 
-## Features
+## <img src="/assets/icon/features.svg" width="30" height="30" style="vertical-align: middle;"> Features
 
 - **Organized by Categories**: Questions are organized into logical categories to help you focus on specific areas
 - **Comprehensive Answers**: Detailed explanations with examples and best practices
@@ -334,18 +334,14 @@ This website aims to provide a comprehensive collection of DevOps interview ques
 - **Search Functionality**: Easily find questions related to specific topics
 - **Mobile-Friendly**: Access the content on any device, anytime
 
-## How to Use This Resource
+## <img src="/assets/icon/how-to-use-this-resource.svg" width="30" height="30" style="vertical-align: middle;"> How to Use This Resource
 
 - **Regular Practice**: Review questions regularly to reinforce your knowledge
 - **Focus on Weak Areas**: Use the categories to target areas where you need improvement
 - **Apply Knowledge**: Don't just memorize answers; understand the concepts and apply them
 - **Contribute**: If you have suggestions for new questions or improvements, please contribute
 
-## About the Author
-
-This resource is maintained by DevOpsMe with years of experience in the field. We believe in sharing knowledge and helping others succeed in their DevOps career journey.
-
-## Connect and Contribute
+## <img src="/assets/icon/connect-and-contribute.svg" width="30" height="30" style="vertical-align: middle;"> Connect and Contribute
 
 If you'd like to contribute to this project or have any suggestions:
 

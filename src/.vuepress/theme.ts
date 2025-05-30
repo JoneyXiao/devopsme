@@ -14,6 +14,7 @@ export default hopeTheme({
   // logo: "https://theme-hope-assets.vuejs.press/logo.svg",
   logo: "/assets/image/logos--web-dev-icon-light.svg",
   logoDark: "/assets/image/logos--web-dev-icon-dark.svg",
+  favicon: "/favicon.ico",
 
   repo: "JoneyXiao/devopsme",
 
