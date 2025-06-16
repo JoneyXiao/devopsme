@@ -324,7 +324,7 @@ footer: Theme by <a href="https://theme-hope.vuejs.press/" target="_blank">VuePr
 
 ## <img src="/assets/icon/purpose.svg" width="30" height="30" style="vertical-align: middle;"> Purpose
 
-This website aims to provide a comprehensive collection of DevOps interview questions and answers to help professionals prepare for technical interviews. Whether you're just starting your DevOps journey or looking to advance your career, these curated questions will help you strengthen your knowledge and confidence.
+This website aims to provide a comprehensive collection of DevOps interview questions and answers to help professionals prepare for technical interviews. Whether you're just starting your DevOps journey or looking to advance your career, these curated questions will help you strengthen your knowledge and confidence. **We're continuously expanding our collection with the latest DevOps technical documentation and best practices!**
 
 ## <img src="/assets/icon/features.svg" width="30" height="30" style="vertical-align: middle;"> Features
 
