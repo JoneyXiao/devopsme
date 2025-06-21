@@ -11,7 +11,7 @@ heroImageDark: /assets/image/svg-spinners--blocks-wave-dark.svg
 bgImageStyle:
   background-attachment: fixed
 heroText: DevOpsMe Docs
-tagline: A comprehensive collection of DevOps interview questions and answers to help you prepare for technical interviews✨
+tagline: A comprehensive collection of DevOps interview questions & answers and technical documentation to help you prepare for technical interviews✨
 heroStyle:
   min-height: 500px
 actions:
@@ -320,11 +320,18 @@ copyright: false
 footer: Theme by <a href="https://theme-hope.vuejs.press/" target="_blank">VuePress Theme Hope</a> | MIT Licensed, Copyright © 2020-present DevOpsMe
 ---
 
+<style>
+highlight-orange {
+  color: #FF8906;
+  font-weight: bold;
+}
+</style>
+
 # About DevOps Interview Questions
 
 ## <img src="/assets/icon/purpose.svg" width="30" height="30" style="vertical-align: middle;"> Purpose
 
-This website aims to provide a comprehensive collection of DevOps interview questions and answers to help professionals prepare for technical interviews. Whether you're just starting your DevOps journey or looking to advance your career, these curated questions will help you strengthen your knowledge and confidence. **We're continuously expanding our collection with the latest DevOps technical documentation and best practices!**
+This website aims to provide a comprehensive collection of DevOps interview questions and answers to help professionals prepare for technical interviews. Whether you're just starting your DevOps journey or looking to advance your career, these curated questions will help you strengthen your knowledge and confidence. <highlight-orange>We're continuously expanding our collection with the latest DevOps technical documentation and best practices!</highlight-orange>
 
 ## <img src="/assets/icon/features.svg" width="30" height="30" style="vertical-align: middle;"> Features
 

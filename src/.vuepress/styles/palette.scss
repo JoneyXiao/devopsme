@@ -1,3 +1,9 @@
-// you can change colors here
+// font
 $vp-font: "JetBrains Mono, monospace";
 $vp-font-heading: $vp-font;
+
+// Color for separators, used to divide sections within the same components, such as having separator on "h2" heading.
+$vp-c-divider: (
+  light: #EBEBF5,
+  dark: #3C3C43,
+);

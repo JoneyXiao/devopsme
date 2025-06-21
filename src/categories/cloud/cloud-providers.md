@@ -1,5 +1,6 @@
 ---
-title: Differences Between Major Cloud Providers
+title: Major Cloud Providers
+icon: mdi-light:vector-difference-ab
 category: cloud
 date: 2024-03-18 10:20:00
 tags: [cloud, aws, azure, gcp, providers]

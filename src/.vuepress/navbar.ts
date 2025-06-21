@@ -16,8 +16,8 @@ export default navbar([
         prefix: "/categories/",
         // children: ["ci-cd/", { text: "CICD", icon: "catppuccin:release", link: "ci-cd/" }],
         children: [
-          "ci-cd/",
           "cloud/",
+          "ci-cd/",
           "containers/",
           "general/",
           "infrastructure/",
