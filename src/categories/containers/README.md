@@ -1,9 +1,9 @@
 ---
 title: Containers
-icon: simple-icons:docker
+# icon: simple-icons:docker
 dir:
   collapsible: true
-  order: 3
+  order: 4
   link: true
 category:
   - containers

@@ -1,14 +1,12 @@
 ---
-title: AWS Certified Cloud Practitioner
+title: AWS Overview
 date: 2025-06-19 10:00:00
-categories:
+category:
   - cloud
-tags:
+tag:
   - cloud
   - aws
-  - aws-certified-cloud-practitioner
-  - aws-certified-cloud-practitioner-exam
-  - aws-certified-cloud-practitioner-certification
+  - aws-overview
 ---
 
 <style>
@@ -37,7 +35,7 @@ highlight-orange {
   font-weight: bold;
 }
 
-numbers {
+highlight-purple {
   color: #FF00FF;
   font-weight: bold;
 }
@@ -73,7 +71,7 @@ This page is a collection of resources for the AWS Certified Cloud Practitioner 
 
 ### AWS Edge Locations / Points of Presence
 
-- Amazon has <numbers>400+</numbers> [Points of Presence](https://aws.amazon.com/cloudfront/features/) (400+ Edge Locations & 10+ Regional Caches) in <numbers>90+</numbers> cities across <numbers>40+</numbers> countries
+- Amazon has <highlight-purple>400+</highlight-purple> [Points of Presence](https://aws.amazon.com/cloudfront/features/) (400+ Edge Locations & 10+ Regional Caches) in <highlight-purple>90+</highlight-purple> cities across <highlight-purple>40+</highlight-purple> countries
 - Content is delivered to end users with lower latency
 
 ### Tour of the AWS Console
