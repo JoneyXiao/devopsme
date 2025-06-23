@@ -43,6 +43,14 @@ highlight-purple {
   color: #FF00FF;
   font-weight: bold;
 }
+
+blockquote {
+  font-size: 14px;
+}
+
+img {
+  border-radius:10px;
+}
 </style>
 
 LLM 开源社区现有状态，非常活跃，大家开发 AI 原生应用时，可以参考选择。请以最新数据为准。
@@ -124,7 +132,9 @@ LLM 开源社区现有状态，非常活跃，大家开发 AI 原生应用时，
 
 开源项目 [awesome-digital-human-live2d](https://github.com/wan-h/awesome-digital-human-live2d)，缩写为 ADH，是国内优秀开发者<highlight-orange>一力辉</highlight-orange>老师在 2024 年开发的。ADH 项目分成后端和前端两部分。<highlight-orange>后端使用 Python 开发，开发框架是 FastAPI。前端使用 TypeScript 开发，开发框架是 Next.js + React + HeroUI</highlight-orange>。可以本地部署开源大模型，也可以使用[阿里云百炼模型广场](https://bailian.console.aliyun.com/?tab=model#/model-market)。
 
-<highlight-purple>后端部署 (Ubuntu 22.04/24.04):</highlight-purple>
+### 部署 ADH 前后端
+
+<highlight-purple>后端 (Ubuntu 22.04/24.04):</highlight-purple>
 
 ```bash
 # Python 3.10 on 22.04 and Python 3.12 on 24.04 by default
@@ -160,7 +170,9 @@ cd ~/awesome-digital-human-live2d
 uv run python main.py
 ```
 
-<highlight-purple>前端部署 (MacOS):</highlight-purple>
+<highlight-purple>前端 (MacOS):</highlight-purple>
+
+ADH 前端是一个标准的 H5 页面，而且支持被内嵌在其他 H5 页面中。
 
 ```bash
 # Install Node.js(v22.16.0) https://nodejs.org/en/download
@@ -190,3 +202,62 @@ pnpm run start
 <highlight-purple>测试 ADH 2D 实时数字人:</highlight-purple>
 
 在 UI 设置界面配置 AI Agent，我选择的是阿里云百炼模型广场的 `qwen3-8b`。
+
+![ADH UI](./assets/adh-ui.png)
+
+### 使用 Agent SDK 开发 AI Agent 对接 ADH
+
+[Agent SDK](https://openai.github.io/openai-agents-python/) 是 OpenAI 在 [2025 年 3 月 11 号](https://openai.com/index/new-tools-for-building-agents/)发布的轻量级 AI Agent 开发框架。
+
+在后端服务器上面创建一个新的 Python 项目，该项目作为一个 Python 库，添加为 ADH 的依赖。这是一种最简单的实现方式，还可以使用 RESTful API 调用的方式。
+
+```bash
+cd
+uv init --python 3.10 adh-ai-agent
+cd adh-ai-agent
+
+# Add agent sdk as a dependency
+uv add openai-agents
+
+# This is the name of the Python package
+mkdir adh_ai_agent
+```
+
+更新 `pyproject.toml` 文件，使用 `setuptools` 作为构建系统，以便于通过 pip 安装。
+
+```toml
+[[tool.uv.index]]
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+default = true
+
+[build-system]
+requires = ["setuptools>=42"]
+build-backend = "setuptools.build_meta"
+```
+
+切换到 ADH 项目的根目录，更新 ADH 项目的 `pyproject.toml` 文件，添加 `editable_mode` 配置，以便于在开发过程中，自动更新依赖的包。
+
+```toml
+[tool.uv]
+config-settings = { editable_mode = "compat" }
+```
+
+添加 `adh-ai-agent` 作为 ADH 的依赖。
+
+```bash
+cd ~/awesome-digital-human-live2d
+uv pip install -e "../adh-ai-agent"
+```
+
+到这里，一个 AI Agent 项目的初始化工作就完成了。接下来开发一个 ADH agent 来支持调用上一步创建的外部 AI Agent。`digitalHuman/agent/core/repeaterAgent.py` 是一个最简单的 ADH Agent 实现，它重复输出用户输入的内容，可以作为模板开发一个新的 ADH Agent `digitalHuman/agent/core/externalAgent.py`。
+
+> 在 `run()` 函数中，使用 `importlib` 动态加载外部 AI Agent 的模块，调用了模块的 `chat_with_agent()` 函数。
+> 
+> 还需要把新创建的 ADH Agent 添加到 `digitalHuman/agent/core/__init__.py` 文件中。然后在 `configs/agents/` 目录下创建一个新文件 `externalAgent.yaml`，添加新 ADH Agent 的配置。
+> 
+> 最后，在主配置文件 `configs/config.yaml` 中，把新的 ADH Agent 配置文件名 `outsideAgent.yaml` 添加到 `SERVER.AGENTS.SUPPORT_LIST` 列表中。
+
+实现外部 AI Agent。
+
+
+

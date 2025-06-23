@@ -1,10 +1,10 @@
 ---
 title: Containers
 # icon: simple-icons:docker
-dir:
-  collapsible: true
-  order: 4
-  link: true
+# dir:
+#   collapsible: true
+#   order: 4
+#   link: true
 category:
   - containers
 tag:
