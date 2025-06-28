@@ -39,9 +39,24 @@ highlight-purple {
   color: #FF00FF;
   font-weight: bold;
 }
+
+img {
+  border-radius:10px;
+}
 </style>
 
-This page is a collection of resources for the AWS Certified Cloud Practitioner exam.
+This page is a collection of resources for the <highlight-orange>AWS Certified Cloud Practitioner (CLF-C02)</highlight-orange> exam.
+
+To get familiar with the structure, format, and style of questions on the exam, check [Official Practice Question Set: AWS Certified Cloud Practitioner (CLF-C02 - English)](https://skillbuilder.aws/learn/E4W52ZKK6P/exam-prep-official-question-set-aws-certified-cloud-practitioner-clf-c02-english/RJSZKD3MG3).
+
+## [AWS Pricing](https://aws.amazon.com/pricing/) - Quick Overview
+
+You can read more about the [AWS Free Tier](https://aws.amazon.com/free/).
+
+AWS has 3 pricing fundamentals, following the <highlight-orange>pay-as-you-go</highlight-orange> pricing model:
+- Compute: Pay for compute time
+- Storage: Pay for data stored in the Cloud
+- Outbound data transfer: Data transfer OUT of the Cloud, data transfer IN is free
 
 ## [AWS Global Infrastructure](https://aws.amazon.com/about-aws/global-infrastructure/)
 
@@ -87,3 +102,13 @@ This page is a collection of resources for the AWS Certified Cloud Practitioner 
     - Elastic Beanstalk (Platform as a Service)
     - Lambda (Function as a Service)
     - Rekognition (Software as a Service)
+
+## Shared Responsibility Model
+
+Security and Compliance is a shared responsibility between AWS and the customer. Please check the [Shared Responsibility Model](https://aws.amazon.com/compliance/shared-responsibility-model/).
+
+![Shared Responsibility Model Diagram](https://d1.awsstatic.com/onedam/marketing-channels/website/aws/en_US/product-categories/security-identity-compliance/compliance/approved/images/7a404923-5572-409c-b30e-6d44706bcd89.01bb8af3d4f9cae73c5543f1884a0bb6b5a1d187.jpeg)
+
+## AWS Acceptable Use Policy
+
+More details, please check the [AWS Acceptable Use Policy](https://aws.amazon.com/aup/).

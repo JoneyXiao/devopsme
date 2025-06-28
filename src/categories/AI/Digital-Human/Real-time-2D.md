@@ -93,6 +93,9 @@ LLM 开源社区现有状态，非常活跃，大家开发 AI 原生应用时，
 
 ## 开源 AI Agent 开发框架
 
+> 2024 年 AI Agent 开发领域以开源社区为主，2025 年大厂开始发力，在我看来，AI Agent 开发框架会以开源社区为主。
+> [Azure AI Foundry Agent Service](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/overview) 是一个将模型、工具、框架和治理机制整合为统一平台的系统，用于构建智能体。
+
 | 通⽤ AI Agent 开发框架 |          RAG 开发框架    |  低代码开发⼯具            |   类 Manus 开发框架   |
 | :--------------------| :---------------------- | :---------------------- | :------------------ |
 | - [LangChain + LangGraph](https://github.com/langchain-ai/langgraph) | - [LlamaIndex](https://github.com/run-llama/llama_index) | - [Dify](https://github.com/langgenius/dify) | - [OpenManus](https://github.com/FoundationAgents/OpenManus) |
@@ -104,6 +107,8 @@ LLM 开源社区现有状态，非常活跃，大家开发 AI 原生应用时，
 | - [Camel](https://github.com/camel-ai/camel)                          |    |   |   |
 | - [BabyAGI](https://github.com/yoheinakajima/babyagi)                 |    |   |   |
 | - [AutoAgents](https://github.com/Link-AGI/AutoAgents)                |    |   |   |
+| - [Google- ADK](https://google.github.io/adk-docs/)                   |    |   |   |
+| - [AWS - Strands Agents](https://strandsagents.com/latest/)           |    |   |   |
 
 ## 开源数字人项目
 
@@ -128,6 +133,8 @@ LLM 开源社区现有状态，非常活跃，大家开发 AI 原生应用时，
 
     <BiliBili bvid="BV1Dz42187yB" />
 
+- [Metahuman](https://www.metahuman.com/en-US)。创建并驱动完全定制的高度逼真 3D 数字人。
+
 ## <highlight-orange>ADH 2D 实时数字人</highlight-orange>
 
 开源项目 [awesome-digital-human-live2d](https://github.com/wan-h/awesome-digital-human-live2d)，缩写为 ADH，是国内优秀开发者<highlight-orange>一力辉</highlight-orange>老师在 2024 年开发的。ADH 项目分成后端和前端两部分。<highlight-orange>后端使用 Python 开发，开发框架是 FastAPI。前端使用 TypeScript 开发，开发框架是 Next.js + React + HeroUI</highlight-orange>。可以本地部署开源大模型，也可以使用[阿里云百炼模型广场](https://bailian.console.aliyun.com/?tab=model#/model-market)。
@@ -135,6 +142,8 @@ LLM 开源社区现有状态，非常活跃，大家开发 AI 原生应用时，
 ### 部署 ADH 前后端
 
 <highlight-purple>后端 (Ubuntu 22.04/24.04):</highlight-purple>
+
+ADH 后端就是一个基于 FastAPI 开发的服务，它的主要作用是集成外部的一些基础服务（包括 ASR、TTS、LLM 三类）和外部的 AI Agent，暴露 RESTful API 给前端使用。ADH 前端遵循 BFF 架构模式（Backend for Frontend）。而支持 BFF 架构前端的理想选择，就是微服务，主要是基于 RESTful API 的微服务。而使用 Python 开发微服务的首选开发框架就是 FastAPI。ADH 后端的代码采用标准的 OOP 面向对象风格编写
 
 ```bash
 # Python 3.10 on 22.04 and Python 3.12 on 24.04 by default
@@ -172,7 +181,7 @@ uv run python main.py
 
 <highlight-purple>前端 (MacOS):</highlight-purple>
 
-ADH 前端是一个标准的 H5 页面，而且支持被内嵌在其他 H5 页面中。
+ADH 前端是一个标准的 H5 页面，而且支持被内嵌在其他 H5 页面中。Next.js 应用的架构遵循标准的 BFF（Backend for Frontend）架构模式。
 
 ```bash
 # Install Node.js(v22.16.0) https://nodejs.org/en/download
@@ -207,9 +216,21 @@ pnpm run start
 
 ### 使用 Agent SDK 开发 AI Agent 对接 ADH
 
-[Agent SDK](https://openai.github.io/openai-agents-python/) 是 OpenAI 在 [2025 年 3 月 11 号](https://openai.com/index/new-tools-for-building-agents/)发布的轻量级 AI Agent 开发框架。
+[Agent SDK](https://openai.github.io/openai-agents-python/) 是 OpenAI 在 [2025 年 3 月 11 号](https://openai.com/index/new-tools-for-building-agents/)发布的轻量级 AI Agent 开发框架。[OpenAI Agents SDK 中文文档](https://www.tizi365.com/openai-agents-sdk/)
 
-在后端服务器上面创建一个新的 Python 项目，该项目作为一个 Python 库，添加为 ADH 的依赖。这是一种最简单的实现方式，还可以使用 RESTful API 调用的方式。
+> [openai-cs-agents-demo](https://github.com/openai/openai-cs-agents-demo) 是一个基于 OpenAI Agents SDK 构建的客户服务智能体演示项目，包含 Python 后端智能体编排引擎和 Next.js 前端交互界面。项目完整复现了航空公司客服场景：通过分流智能体（Triage Agent）将用户请求（如改签座位、航班状态查询）自动路由到专业智能体（座位预订/航班状态/FAQ 等模块），并集成了安全护栏机制（防越狱/防无关问题）。用户可通过直观的聊天界面体验多智能体协同处理复杂工作流的全过程，后端采用模块化设计便于自定义提示词和业务逻辑扩展。
+
+Agent SDK 中包括以下三个基本概念：
+
+- <highlight-orange>Agent（代理）：配备指令和工具的一个 LLM 会话（session）。</highlight-orange>
+- <highlight-orange>Handoff（移交）：允许一个代理委托其他代理来执行特定任务(多 Agent 协作)。</highlight-orange>
+- <highlight-orange>Guardrail（护栏）：对代理的输入、输出进行校验。</highlight-orange>
+
+在 Agent SDK 的实现中，是基于 Assistants API 来调用配置的 Tools。因此如果要调用 Tools，就必须使用支持 Assistants API（也就是所谓的“Function Call”）的 LLM。Qwen3 对 Assistants API 支持的非常好，而 DeepSeek-R1 则完全不支持 Assistants API，支持 Assistants API 的是 DeepSeek-V3。所以 DeepSeek-V3 和 DeepSeek-R1 必须结合起来才能开发调用 Tools 的 AI Agent。
+
+多 Agent 协作的基础就是角色扮演（role playing），角色扮演的基础是大模型，现在主流的大模型都支持角色扮演。
+
+回到 ADH 项目，在后端服务器上面创建一个新的 Python 项目，该项目作为一个 Python 库，添加为 ADH 的依赖。这是一种最简单的实现方式，还可以使用 RESTful API 调用的方式。
 
 ```bash
 cd
@@ -258,6 +279,60 @@ uv pip install -e "../adh-ai-agent"
 > 最后，在主配置文件 `configs/config.yaml` 中，把新的 ADH Agent 配置文件名 `outsideAgent.yaml` 添加到 `SERVER.AGENTS.SUPPORT_LIST` 列表中。
 
 实现外部 AI Agent。
+
+### 数字人形象定制
+
+ADH 前端使用的 2D 数字人，是基于 Live2D 开发的。基于 Live2D 的 2D 数字人模型，可以划分为设计（也就是建模）和应用两个大的环节。
+
+- <highlight-orange>设计环节</highlight-orange>：使用 Live2D Editor 来进行 2D 数字人的设计。设计的成品会被导出为 Live2D 模型。设计环节的主要工作由设计师来完成。
+- <highlight-orange>应用环节</highlight-orange>：使用 Live2D SDK 将设计环节中导出的 Live2D 模型部署到各种应用之中。应用环节的主要工作由开发者来完成。
+
+[Live2D SDK 教程](https://docs.live2d.com/zh-CHS/cubism-sdk-tutorials/top/)。ADH 前端是一个 Web 应用，选择的 SDK 是 [SDK for Web](https://docs.live2d.com/zh-CHS/cubism-sdk-tutorials/sample-build-web/)。
+
+<highlight-purple>数字人设计</highlight-purple>
+
+1. 下载和安装 [Live2D Editor](https://www.live2d.com/zh-CHS/cubism/download/editor/)。安装好之后，其中有一个工具叫 Live2D Viewer，可以使用这个工具来查看和测试 Live2D Editor 导出的数字人模型。
+2. [Live2D Cubism 教程](https://docs.live2d.com/zh-CHS/cubism-editor-tutorials/top/), [Live2D Cubism 手册](https://docs.live2d.com/zh-CHS/cubism-editor-manual/top/)。Live2D 数字人的设计环节，细节非常多，数字人要支持的姿态和动作越多，工作量就越大，也可以考虑去找人购买定制 Live2D 数字人的服务，或者在网上购买现成的 Live2D 数字人模型。[Live2D 官网免费下载使用的模型](https://www.live2d.com/zh-CHS/learn/sample/)。此外，B 站就是中国 Live2D 设计师 + 开发者的大本营。在 B 站上，也可以看到很多分享的 Live2D 视频教程和 Live2D 模型。有些分享的模型是免费的，有些是收费的。
+3. Live2D 数字人模型中包括以下文件(以 `{roleName}` 表示数字人角色名):
+    - `{roleName}.model3.json`: 模型的配置文件
+    - `{roleName}.moc3`: 模型的骨骼文件
+    - `{roleName}.physics3.json`: 物理配置文件
+    - `{roleName}.cdi3.json`: 自定义参数数据
+    - `{roleName}.pose3.json`: 姿态配置文件
+    - `{roleName}.2048`: 这个子目录中是模型的纹理文件(通常是 png 图片)
+    - `motions`: 这个子目录中是各种动作的配置文件，后缀为 `.motion3.json`
+    - `expressions`: 这个子目录中是各种表情的配置文件，后缀为 `.exp3.json`
+
+<highlight-purple>数字人应用</highlight-purple>
+
+> 以下所有操作是在 ADH 项目根目录下的 `web` 目录中进行。
+
+1. [Live2D SDK 下载页面](https://www.live2d.com/zh-CHS/sdk/about/)选择 `SDK for Web` 下载。ADH 前端已经集成了 Live2D SDK for Web。
+2. `app/layout.tsx` 文件中的 script 标签中，添加 Live2D SDK 的引用（核心 JS 库）。
+3. `public/sentio` 目录是 Live2D 数字人模型的相关文件:
+    - `characters`: 所有的 Live2D 数字人模型的相关文件
+    - `backgrounds`: 数字人的背景图片
+    - `core`: 只有一个 `live2dcubismcore.min.js` 文件，也就是 Live2D SDK 的核心 JS 库
+4. `lib/live2d` 目录是 Live2D 相关的库，入口是 `live2dManager.js`:
+    - `changeCharacter`: 设置不同的数字人模型
+    - `setLipFactor`, `getLipFactor`: 设置数字人的张口幅度参数
+    - 与语音相关的函数: `pushAudioQueue`, `popAudioQueue`, `clearAudioQueue`, `playAudio`, `stopAudio`, `isAudioPlaying`
+5. 在 ADH 前端配置新的数字人模型
+
+    ```bash
+    mkdir -p public/sentio/characters/custom/{roleName}
+    # copy the Live2D model files to the custom directory
+    ```
+6. 在 `lib/constants.ts` 文件中的 `SENTIO_CHARACTER_CUSTOM_MODELS` 列表中，添加新的数字人模型名。
+7. 语音个性化设置，也就是在 ADH 前端 TTS(语音合成) 的设置中，配置新的数字人模型的语音。目前 ADH 前端支持的 TTS 服务有 EdgeTTS, Dify 和[腾讯云](https://cloud.tencent.com/product/tts)([API 密钥管理](https://console.cloud.tencent.com/cam/capi))。
+
+
+
+
+
+
+
+
 
 
 
