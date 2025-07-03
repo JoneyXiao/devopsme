@@ -162,9 +162,10 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 sudo apt update
 sudo apt install ffmpeg
 
-# Clone ADH
+# Clone ADH, ADH official repo is https://github.com/wan-h/awesome-digital-human-live2d.git
+# This repo is a fork of the official repo, with some modifications.
 cd ~
-git clone https://github.com/wan-h/awesome-digital-human-live2d.git
+git clone https://github.com/freecoinx/awesome-digital-human-live2d.git
 cd awesome-digital-human-live2d
 # Init a uv project
 uv init --python 3.10
@@ -198,9 +199,10 @@ npm install -g next
 npm install -g heroui-cli
 corepack enable pnpm
 
-# Clone ADH
+# Clone ADH, ADH official repo is https://github.com/wan-h/awesome-digital-human-live2d.git
+# This repo is a fork of the official repo, with some modifications.
 cd
-git clone https://github.com/wan-h/awesome-digital-human-live2d.git
+git clone https://github.com/freecoinx/awesome-digital-human-live2d.git
 cd awesome-digital-human-live2d/web
 
 # Install dependencies
@@ -308,6 +310,14 @@ API_KEY=your_openai_api_key
 ```
 
 然后在 ADH 前端设置页面，配置新的 AI 智能体，引擎选择 "OutsideAgent"，引擎配置中 agent_type 设置为默认的 "local_lib"，agent_module 设置为 `adh_ai_agent.mulan`。
+
+我准备了三个问题来测试花木兰 AI Agent 的回答。
+
+```
+1. 看到征兵文书时，你决定代替年老体弱的父亲上战场，难道不怕战死沙场吗？
+2. 当你在窗前梳起长发时，可曾遗憾错过十二年青春？
+3. 你已经十二年没有见到你的家人了，你最想见到谁？
+```
 
 ### 数字人形象定制
 
