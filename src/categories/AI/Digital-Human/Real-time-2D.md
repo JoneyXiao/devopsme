@@ -297,7 +297,7 @@ uv pip install -e "../adh-ai-agent"
 
 ### 角色扮演 - 花木兰
 
-AI Agent 实现<highlight-orange>花木兰</highlight-orange>的角色扮演，对应的代码文件是 `adh-ai-agent/adh_ai_agent/mulan.py`。准备 `.env` 文件。
+基于 Agent SDK 实现<highlight-orange>花木兰</highlight-orange>角色扮演的 AI Agent，对应的代码文件是 `adh-ai-agent/adh_ai_agent/mulan.py`。准备 `.env` 文件。
 
 ```bash
 # 在 adh-ai-agent 项目根目录下创建 .env 文件
