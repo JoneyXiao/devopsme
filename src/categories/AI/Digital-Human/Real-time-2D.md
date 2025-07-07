@@ -51,9 +51,13 @@ blockquote {
 img {
   border-radius:10px;
 }
+
+figcaption {
+  margin-bottom: 30px;
+}
 </style>
 
-LLM 开源社区现有状态，非常活跃，大家开发 AI 原生应用时，可以参考选择。请以最新数据为准。
+LLM 开源社区现有状态，最近没有大新闻，但还是非常活跃，可能大家在埋头骨干研究 AI 原生应用。大家开发 AI 原生应用时，可以参考选择。请以最新数据为准。
 
 带着兴趣和疑问来听这个分享。分享完后，期待能够动手实践。
 
@@ -220,7 +224,7 @@ pnpm run start
 
 <highlight-purple>测试 ADH 2D 实时数字人:</highlight-purple>
 
-在 UI 设置界面配置 AI Agent，引擎选择 "OpenAI"，引擎配置我用的是阿里云百炼模型广场的 `qwen3-8b`。TTS 默认使用的免费服务是 [EdgeTTS](https://edge-tts.com/)，点击这个链接可以体验。
+在 UI 设置界面配置 AI Agent，引擎选择 "OpenAI"，引擎配置我用的是阿里云百炼模型广场的 `qwen3-8b`，TTS 默认使用的免费服务是 [EdgeTTS](https://edge-tts.com/)。
 
 ![ADH UI](./assets/adh-ui.png)
 
@@ -234,11 +238,12 @@ pnpm run start
 > 
 > [openai-cs-agents-demo](https://github.com/openai/openai-cs-agents-demo) 是一个基于 OpenAI Agents SDK 构建的客户服务智能体演示项目，包含 Python 后端智能体编排引擎和 Next.js 前端交互界面。项目完整复现了航空公司客服场景：通过分流智能体（Triage Agent）将用户请求（如改签座位、航班状态查询）自动路由到专业智能体（座位预订/航班状态/FAQ 等模块），并集成了安全护栏机制（防越狱/防无关问题）。用户可通过直观的聊天界面体验多智能体协同处理复杂工作流的全过程，后端采用模块化设计便于自定义提示词和业务逻辑扩展。
 
-Agent SDK 中包括以下三个基本概念：
+Agent SDK 中包括以下四个基本概念：
 
 - <highlight-orange>Agent（代理）：配备指令和工具的一个 LLM 会话（session）。</highlight-orange>
 - <highlight-orange>Handoff（移交）：允许一个代理委托其他代理来执行特定任务(多 Agent 协作)。</highlight-orange>
 - <highlight-orange>Guardrail（护栏）：对代理的输入、输出进行校验。</highlight-orange>
+- <highlight-orange>Tracing（追踪）：内置的代理运行追踪，允许你查看、调试和优化你的工作流。</highlight-orange>
 
 在 Agent SDK 的实现中，是基于 Assistants API 来调用配置的 Tools，Tools 可以是 Python 函数，还可以是另外一个 Agent。如果要调用 Tools，就必须使用支持 Assistants API（也就是所谓的“Function Call”）的 LLM。Qwen3 对 Assistants API 支持的非常好，而 DeepSeek-R1 则完全不支持 Assistants API，支持 Assistants API 的是 DeepSeek-V3。DeepSeek-V3 和 DeepSeek-R1 必须结合起来才能开发调用 Tools 的 AI Agent。
 
@@ -425,3 +430,133 @@ ln -s ../adh-ai-agent/data .
 - 必须使用有上下文长度非常大的 LLM。
 - 把大量数据发给 LLM 处理，处理时间会比较长。如果 RAG 应用对延迟要求非常苛刻，这样的应用难以满足需要。通过实现某种形式的缓存，只能一定程度上缓解这个问题，但是无法彻底解决。
 - 如果使用第三方提供的 LLM 服务，成本的增加是显而易见的。
+
+<highlight-purple>RAG With Vector Database</highlight-purple>
+
+流行的嵌入模型和向量数据库介绍
+
+| 类别 | 类型 | 产品/模型 | 详细描述 |
+|------|------|-----------|----------|
+| **嵌入模型** | 商业版 | text-embedding-3-small | OpenAI 提供的嵌入模型，课程中测试使用 |
+| | | Google、阿里云、腾讯云、智谱 AI | 基础 LLM 厂商都有自己的嵌入模型 |
+| | 开源 | nomic-embed-text | 可以通过 Ollama 来部署和使用 |
+| | | bge-large | 可以通过 Ollama 来部署和使用 |
+| | | bge-m3 | 可以通过 Ollama 来部署和使用 |
+| **向量数据库** | 商业版 | OpenAI 官方推荐 | [Vector databases](https://cookbook.openai.com/examples/vector_databases/readme) |
+| | | 阿里云、腾讯云 | 国内云平台厂商的向量数据库产品 |
+| | | Chroma、Milvus、Weaviate | 专业厂商，既有商业版也有开源版 |
+| | | Pinecone | 基于 Faiss 开发的商业版产品 |
+| | 开源 | Faiss | Meta 开源的老牌向量数据库 |
+| | | ChromaDB | 开源向量数据库 |
+| | | Milvus | 开源向量数据库 |
+| | | Weaviate | 开源向量数据库 |
+| | | pgvector | PostgreSQL 团队推出的开源向量数据库 |
+| | | ElasticSearch | 支持向量数据保存和搜索功能 |
+
+Ollama 服务部署了一套与 OpenAI API 兼容的 API，因此可以很简单地使用 OpenAI 官方 SDK 来访问所有 Ollama 部署的 LLM。除了支持 LLM 之外，这套 OpenAI API 兼容的 API 同样也支持嵌入模型，我们可以很简单地使用 OpenAI 官方 SDK 来访问所有 Ollama 部署的嵌入模型。
+
+```bash
+ollama pull nomic-embed-text
+ollama pull bge-large
+ollama pull bge-m3
+```
+
+添加依赖。
+
+```bash
+cd ~/adh-ai-agent
+uv add beautifulsoup4 faiss-cpu patchright
+
+uv run patchright install chromium
+```
+
+faiss-cpu 只使用 CPU，不需要独立显卡。另外还有一个 faiss-gpu，这个库和 faiss-cpu 是互相取代的，使用了独立显卡，但是性能会比 faiss-cpu 好很多。
+
+Patchright 比 Playwright 库更加隐蔽，更不容易被某些网站的反爬虫功能检测到。
+
+具体实现可以划分为两个大步骤：
+1. 对网页内容做预处理
+```bash
+# reuse the .env file in the adh-ai-agent project
+uv run python adh_ai_agent/rag_with_vecdb.py --preprocess
+```
+2. 回答用户问题
+```bash
+uv run python adh_ai_agent/rag_with_vecdb.py
+```
+
+在 ADH 后端重新添加 adh-ai-agent 项目作为依赖。
+
+```bash
+cd ~/awesome-digital-human-live2d/
+uv pip install -e "../adh-ai-agent"
+```
+
+修改 `rag_agent.py` 使用新的 RAG 实现方法 `from .rag_with_vecdb ...`。在 ADH 前端配置新的 AI 智能体，引擎选择 "OutsideAgent"，引擎配置中 agent_type 设置为默认的 "local_lib"，agent_module 设置为 `adh_ai_agent.rag_agent`。
+
+### Agent SDK 实现 MCP 应用
+
+<highlight-purple>MCP 介绍</highlight-purple>
+
+[MCP](https://modelcontextprotocol.io/introduction) 是一个缩写词，全称是 Model Context Protocol，翻译为模型上下文协议。它是由 LLM 一线大厂 Anthroipc 于 2024 年 11 月发布的一个规范。[Anthropic MCP 概述 - 中文文档](https://docs.anthropic.com/zh-CN/docs/agents-and-tools/mcp)。
+
+> MCP 是一个开放协议，它标准化了应用程序如何向 LLM 提供上下文。可以将 MCP 视为 AI 应用程序的 USB-C 端口。就像 USB-C 为连接设备与各种外设和配件提供了标准化方式一样，MCP 为连接 LLM 与不同数据源和工具提供了标准化方式。
+
+强烈推荐阅读这篇博客 [What is Model Context Protocol (MCP)? How it simplifies AI integrations compared to APIs](https://norahsakal.com/blog/mcp-vs-api-model-context-protocol-explained/)
+
+![The Model Context Protocol (MCP) is a standardized protocol that connects AI agents to various external tools and data sources](./assets/mcp_overview.png)
+
+而传统 API 就像一扇扇门，每扇门都有自己的钥匙和规则。
+
+![Traditional APIs require developers to write custom integrations for each service or data source](./assets/api_overview.png)
+
+MCP 的架构支持 MCP 主机通过 MCP 客户端连接多个 MCP 服务器，每个服务器都提供独立的功能，实现了模块化和灵活的集成。MCP 服务器提供了三类公开接口：
+
+- 资源访问：允许 LLM 加载数据源，例如本地文件、文档或数据库查询。
+- 工具调用：支持 LLM 执行特定操作，例如 API 调用或命令执行。
+- 交互提示：提供可重复使用的 LLM 交互模板，指导 LLM 在特定场景下的行为，提升任务执行的准确性与效率。
+
+MCP 是非常清晰的分层架构，有效地分离了关注点，大幅降低了 LLM 应用集成外部工具的难度。正是因为 MCP 在整体架构和实现细节两个方面都后来居上超越了 Assistants API，所以才在 AI Agent 开发者社区得到了广泛的欢迎和采用。
+
+目前已经有很多 AI Agent 开发框架都可以支持 MCP:
+- [OpenAI Agent SDK 的 MCP 支持](https://openai.github.io/openai-agents-python/mcp/)
+- [微软 AutoGen 的 MCP 支持](https://microsoft.github.io/autogen/stable//user-guide/core-user-guide/components/workbench.html)
+- [谷歌 Assistant SDK (ADK) 的 MCP 支持](https://google.github.io/adk-docs/tools/mcp-tools/)
+- [LangGraph 的 MCP 支持](https://langchain-ai.github.io/langgraph/agents/mcp/)
+- [LlamaIndex 的 MCP 支持](https://docs.llamaindex.ai/en/stable/api_reference/tools/mcp/)
+- [Camel 的 MCP 支持](https://mcp.camel-ai.org/)
+
+与 AI Agent 开发框架支持 MCP 同时，各种各样的 MCP 服务器也在互联网上大量出现，有些甚至是可以免费使用的。[国内最大的 MCP 中文社区来了，4000 多个服务等你体验](https://developer.aliyun.com/article/1661258)。
+
+根据 [Agent SDK 官方文档](https://openai.github.io/openai-agents-python/mcp/) 中的介绍，根据不同的传输机制支持使用 3 类 MCP 服务器：
+- stdio 服务器：作为应用程序的子进程运行，可视为“本地”运行模式。实现类为 MCPServerStdio。
+- HTTP over SSE 服务器：以远程方式运行，需要通过 URL 进行远程连接。实现类为 MCPServerSse。
+- 支持流式输出的 HTTP 服务器：以远程方式运行，使用 MCP 规范中定义的支持流式输出的 HTTP 传输机制。实现类为 MCPServerStreamableHttp。
+
+MCP 服务器可被添加到 AI Agent 中。每次运行 AI Agent 时，Agents SDK 都会调用 MCP 服务器的 `list_tools()` 方法，使 LLM 感知该服务器提供的工具。当 LLM 调用 MCP 服务器的工具时，Agent SDK 会调用该服务器的 `call_tool()` 方法。
+
+Agent SDK 官方文档中关于 MCP 的内容只有一个页面。想要了解更多的使用细节，可以阅读 Agent SDK 项目提供的一些[端到端的例子](https://github.com/openai/openai-agents-python/tree/main/examples/mcp)。
+
+<highlight-purple>MCP 应用开发</highlight-purple>
+
+为 adh-ai-agent 项目添加一个 Python 依赖：
+
+```bash
+uv add "mcp[cli]"
+```
+
+运行天气预报 MCP Server，运行在本机的 8003 端口，默认只接受来自本机的访问请求。
+
+```bash
+cd ~/adh-ai-agent
+uv run python adh_ai_agent/weather_mcp_server.py
+```
+
+MCP host 的代码文件是 `adh-ai-agent/adh_ai_agent/weather_mcp_host.py`。修改 `adh-ai-agent/adh_ai_agent/rag_agent.py` 文件，从 weather_mcp_host 中导入 `get_jzg_tomorrow_weather`，然后重新添加 adh-ai-agent 项目作为依赖。
+
+```bash
+cd ~/awesome-digital-human-live2d/
+uv pip install -e "../adh-ai-agent"
+```
+
+重启 ADH 前后端，在 ADH 前端配置新的 AI 智能体，引擎选择 "OutsideAgent"，引擎配置中 agent_type 设置为默认的 "local_lib"，agent_module 设置为 `adh_ai_agent.rag_agent`。
