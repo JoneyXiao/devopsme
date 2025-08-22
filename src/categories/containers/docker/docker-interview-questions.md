@@ -25,7 +25,7 @@ The in28minutes Docker Interview Guide is a comprehensive guide to help you prep
 {
   "title": "01",
   "desc": "Docker Fundamentals",
-  "logo": "./categories/containers/docker/assets/skill-icons--docker.png",
+  "logo": "/assets/image/docker-logo.png",
   "link": "https://interview.in28minutes.com/interview-guides/docker/docker-fundamentals/",
   "background": "var(--vp-c-card-background)",
   "color": "var(--vp-c-card-font)"
@@ -36,7 +36,7 @@ The in28minutes Docker Interview Guide is a comprehensive guide to help you prep
 {
   "title": "02",
   "desc": "Building Docker Images",
-  "logo": "/categories/containers/docker/assets/skill-icons--docker.png",
+  "logo": "/assets/image/docker-logo.png",
   "link": "https://interview.in28minutes.com/interview-guides/docker/building-docker-images/",
   "background": "var(--vp-c-card-background)",
   "color": "var(--vp-c-card-font)"
@@ -47,7 +47,7 @@ The in28minutes Docker Interview Guide is a comprehensive guide to help you prep
 {
   "title": "03",
   "desc": "Managing Docker Containers",
-  "logo": "/categories/containers/docker/assets/skill-icons--docker.png",
+  "logo": "/assets/image/docker-logo.png",
   "link": "https://interview.in28minutes.com/interview-guides/docker/managing-docker-containers/",
   "background": "var(--vp-c-card-background)",
   "color": "var(--vp-c-card-font)"
@@ -58,7 +58,7 @@ The in28minutes Docker Interview Guide is a comprehensive guide to help you prep
 {
   "title": "04",
   "desc": "Persisting Data in Docker",
-  "logo": "/categories/containers/docker/assets/skill-icons--docker.png",
+  "logo": "/assets/image/docker-logo.png",
   "link": "https://interview.in28minutes.com/interview-guides/docker/persisting-data-in-docker/",
   "background": "var(--vp-c-card-background)",
   "color": "var(--vp-c-card-font)"
@@ -69,7 +69,7 @@ The in28minutes Docker Interview Guide is a comprehensive guide to help you prep
 {
   "title": "05",
   "desc": "Docker Networking",
-  "logo": "/categories/containers/docker/assets/skill-icons--docker.png",
+  "logo": "/assets/image/docker-logo.png",
   "link": "https://interview.in28minutes.com/interview-guides/docker/docker-networking/",
   "background": "var(--vp-c-card-background)",
   "color": "var(--vp-c-card-font)"
@@ -80,7 +80,7 @@ The in28minutes Docker Interview Guide is a comprehensive guide to help you prep
 {
   "title": "06",
   "desc": "Docker Security",
-  "logo": "/categories/containers/docker/assets/skill-icons--docker.png",
+  "logo": "/assets/image/docker-logo.png",
   "link": "https://interview.in28minutes.com/interview-guides/docker/docker-security/",
   "background": "var(--vp-c-card-background)",
   "color": "var(--vp-c-card-font)"
@@ -91,7 +91,7 @@ The in28minutes Docker Interview Guide is a comprehensive guide to help you prep
 {
   "title": "07",
   "desc": "Docker Compose",
-  "logo": "/categories/containers/docker/assets/skill-icons--docker.png",
+  "logo": "/assets/image/docker-logo.png",
   "link": "https://interview.in28minutes.com/interview-guides/docker/docker-compose/",
   "background": "var(--vp-c-card-background)",
   "color": "var(--vp-c-card-font)"
@@ -102,7 +102,7 @@ The in28minutes Docker Interview Guide is a comprehensive guide to help you prep
 {
   "title": "08",
   "desc": "Advanced Docker Concepts",
-  "logo": "/categories/containers/docker/assets/skill-icons--docker.png",
+  "logo": "/assets/image/docker-logo.png",
   "link": "https://interview.in28minutes.com/interview-guides/docker/advanced-docker-concepts/",
   "background": "var(--vp-c-card-background)",
   "color": "var(--vp-c-card-font)"
@@ -113,7 +113,7 @@ The in28minutes Docker Interview Guide is a comprehensive guide to help you prep
 {
   "title": "09",
   "desc": "Docker Cheat Sheet",
-  "logo": "/categories/containers/docker/assets/skill-icons--docker.png",
+  "logo": "/assets/image/docker-logo.png",
   "link": "https://interview.in28minutes.com/interview-guides/docker/docker-cheat-sheet/",
   "background": "var(--vp-c-card-background)",
   "color": "var(--vp-c-card-font)"
@@ -124,7 +124,7 @@ The in28minutes Docker Interview Guide is a comprehensive guide to help you prep
 {
   "title": "10",
   "desc": "Docker Interview - Diagrams",
-  "logo": "/categories/containers/docker/assets/skill-icons--docker.png",
+  "logo": "/assets/image/docker-logo.png",
   "link": "https://interview.in28minutes.com/interview-guides/docker/docker-interview-diagrams/",
   "background": "var(--vp-c-card-background)",
   "color": "var(--vp-c-card-font)"
