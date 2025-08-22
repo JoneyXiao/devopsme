@@ -3,7 +3,7 @@ title: Digital Human
 date: 2025-06-21 18:30:00
 dir:
   collapsible: true
-  order: 1
+  order: 2
   link: true
 category:
   - ai

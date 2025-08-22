@@ -1,6 +1,7 @@
 ---
 title: AWS Overview
 date: 2025-06-19 10:00:00
+order: 1
 category:
   - cloud
 tag:
@@ -42,6 +43,10 @@ highlight-purple {
 
 img {
   border-radius:10px;
+}
+
+figcaption {
+  margin-bottom: 30px;
 }
 </style>
 

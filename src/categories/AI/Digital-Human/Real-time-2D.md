@@ -560,3 +560,103 @@ uv pip install -e "../adh-ai-agent"
 ```
 
 重启 ADH 前后端，在 ADH 前端配置新的 AI 智能体，引擎选择 "OutsideAgent"，引擎配置中 agent_type 设置为默认的 "local_lib"，agent_module 设置为 `adh_ai_agent.rag_agent`。
+
+### OpenManus As MCP Server
+
+目前在开源社区已经存在的类 Manus 开发工具有三个：
+- [OpenManus](https://github.com/FoundationAgents/OpenManus)，MetaGPT 团队核心成员开发
+- [OWL](https://github.com/camel-ai/owl)，Camel 团队核心成员开发
+- [MinionAgent](https://github.com/femto/minion-agent)，由郑炳南老师领导的一个小团队开发
+
+在 GitHub 上最受欢迎的是 OpenManus。在后端服务器上面[安装 OpenManus](https://github.com/FoundationAgents/OpenManus/blob/main/README_zh.md):
+```bash
+git clone https://github.com/FoundationAgents/OpenManus.git
+cd OpenManus
+# Python>=3.11
+uv init --python 3.12
+uv venv --python 3.12
+
+uv pip install -r requirements.txt
+```
+
+从配置文件模板复制 OpenManus 的配置文件, `cp config/config.example.toml config/config.toml`。
+
+```bash
+# 文本大模型
+[llm]
+model = "qwen3-8b"
+base_url = "https://dashscope.aliyuncs.com/compatible-mode/v1"
+api_key = "sk-xxxx"
+
+...
+
+# 多模态大模型
+[llm.vision]
+model = "qwen3-8b"
+base_url = "https://dashscope.aliyuncs.com/compatible-mode/v1"
+api_key = "sk-xxxx"
+...
+
+[browser]
+headless = true
+```
+
+使用 playwright 安装 Chromium 浏览器。
+
+```bash
+uv run playwright install chromium
+```
+
+qwen3 大模型在使用非 stream 流式输出时，只能工作在非思考模式，这时候必须要传递一个额外的参数 `{“enable_thinking”: False}`。但是 OpenManus 并不支持传递这个额外的参数，因此运行时就会报错。为了解决这个问题，我们需要修改一下 OpenManus 项目中的 `app/llm.py`(第 722 行)，添加下面的 if 判断：
+
+```python :line-numbers=722 title="app/llm.py"
+	            if self.model.startswith("qwen3"):
+                params.update({"extra_body": {"enable_thinking": False}})
+```
+
+运行 OpenManus：
+
+```bash
+uv run python main.py
+
+# 问题：
+# 1. 介绍你自己，并将结果保存到 intro.txt
+# 2. 搜索豆瓣网站排名前 5 的电影，并将结果保存到 top5_movies.txt
+
+# 生成文件将保存在 OpenManus 项目根目录下的 workspace 目录中。
+```
+
+将 OpenManus 作为一个 MCP Server 来调用。在 OpenManus 项目根目录中有两个 Python 文件：
+- `run_mcp.py`：和 `main.py` 差不多，但是以 MCP 协议来调用 OpenManus。
+- `run_mcp_server.py`：启动一个 MCP Server，提供给外部程序来调用。
+
+修改 `app/mcp/server.py` 以支持远程的 sse server 模式，以便通过 Agent SDK 的 MCP Host 来连接。
+
+```python title="app/mcp/server.py" :no-line-numbers
+class MCPServer:
+    """MCP Server implementation with tool registration and management."""
+
+    def __init__(self, name: str = "openmanus"):
+        self.server = FastMCP(name, port=8005) # [!code highlight]
+......
+
+def parse_args() -> argparse.Namespace:
+    """Parse command line arguments."""
+    parser = argparse.ArgumentParser(description="OpenManus MCP Server")
+    parser.add_argument(
+        "--transport",
+        choices=["stdio","sse"], # [!code highlight]
+```
+
+启动 OpenManus 的 MCP Server：
+
+```bash
+uv run python run_mcp_server.py --transport sse
+```
+
+还需要为这个 MCP Server 编写一个 MCP Host 来调用这个 MCP Server。代码文件是 `adh-ai-agent/adh_ai_agent/openmanus_mcp_host.py`。执行测试：
+
+```bash
+cd ~/adh-ai-agent/
+uv run python adh_ai_agent/openmanus_mcp_host.py
+```

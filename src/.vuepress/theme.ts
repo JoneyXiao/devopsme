@@ -78,6 +78,10 @@ export default hopeTheme({
     tabs: true,
     tasklist: true,
     vPre: true,
+    highlighter: {
+      type: "shiki",
+      notationHighlight: true
+    },
 
     // uncomment these if you need TeX support
     // math: {
@@ -125,7 +129,7 @@ export default hopeTheme({
     },
 
     components: {
-      components: ["Badge", "VPCard", "BiliBili"],
+      components: ["Badge", "VPCard", "VPBanner", "BiliBili"],
     },
 
     icon: {
