@@ -25,7 +25,7 @@ The in28minutes Docker Interview Guide is a comprehensive guide to help you prep
 {
   "title": "01",
   "desc": "Docker Fundamentals",
-  "logo": "/categories/containers/docker/assets/skill-icons--docker.png",
+  "logo": "./categories/containers/docker/assets/skill-icons--docker.png",
   "link": "https://interview.in28minutes.com/interview-guides/docker/docker-fundamentals/",
   "background": "var(--vp-c-card-background)",
   "color": "var(--vp-c-card-font)"
